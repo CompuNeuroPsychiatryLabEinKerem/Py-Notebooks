@@ -13235,17 +13235,17 @@ C:\Anaconda3\lib\site-packages\sklearn\utils\deprecation.py:144: FutureWarning: 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">htmlObjs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">viewLesions</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
-    <span class="n">niiMapObj</span><span class="p">,</span> <span class="n">niiMaskObj</span> <span class="o">=</span> <span class="n">prepareNiiObject</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">,</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span>
-    <span class="c1">#htmlObjs[0] = view_img(niiMapObj, threshold=threshold, vmax=1)</span>
-    <span class="c1">#htmlObjs[0].width = 900</span>
-    <span class="c1">#htmlObjs[0].height = 270*1.5</span>
-    <span class="c1">#htmlObjs[1] = view_img(niiMaskObj, threshold=0.9, vmax=1, resampling_interpolation=&#39;nearest&#39;)</span>
-    <span class="c1">#htmlObjs[0].width = 900</span>
-    <span class="c1">#htmlObjs[0].height = 270*1.5</span>
-    <span class="c1">#display(htmlObjs[0])</span>
-    <span class="c1">#display(htmlObjs[1])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">def viewLesions(sbjKey, aggKey, threshold=0.2):</span>
+<span class="s2">    niiMapObj, niiMaskObj = prepareNiiObject(sbjKey, aggKey, &#39;None&#39;)</span>
+<span class="s2">    htmlObjs[0] = view_img(niiMapObj, threshold=threshold, vmax=1)</span>
+<span class="s2">    htmlObjs[0].width = 900</span>
+<span class="s2">    htmlObjs[0].height = 270*1.5</span>
+<span class="s2">    htmlObjs[1] = view_img(niiMaskObj, threshold=0.9, vmax=1, resampling_interpolation=&#39;nearest&#39;)</span>
+<span class="s2">    htmlObjs[0].width = 900</span>
+<span class="s2">    htmlObjs[0].height = 270*1.5</span>
+<span class="s2">    display(htmlObjs[0])</span>
+<span class="s2">    display(htmlObjs[1])</span>
 </pre></div>
 
     </div>
