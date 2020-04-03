@@ -13247,6 +13247,7 @@ C:\Anaconda3\lib\site-packages\sklearn\utils\deprecation.py:144: FutureWarning: 
 <span class="sd">    display(htmlObjs[0])</span>
 <span class="sd">    display(htmlObjs[1])</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kc">None</span>
 </pre></div>
 
     </div>
@@ -13263,19 +13264,21 @@ C:\Anaconda3\lib\site-packages\sklearn\utils\deprecation.py:144: FutureWarning: 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">def viewComulative(aggKey, connectivityThr=0.2, jointThr=30):</span>
-<span class="s2">    data = SUBJECT_MAPS[aggKey][&#39;None&#39;]</span>
-<span class="s2">    thrmap = (data&gt;=connectivityThr).sum(1).flatten()</span>
-<span class="s2">    </span>
-<span class="s2">    imgdata = np.zeros(np.prod(VOL_SIZE))</span>
-<span class="s2">    imgdata[GM_INDICES] = thrmap</span>
-<span class="s2">    imgdata = imgdata.reshape(VOL_SIZE)</span>
-<span class="s2">    niiObj = nib.Nifti1Image(imgdata, NII_AFFINE, NII_HEADER)  </span>
-<span class="s2">    #htmlObjs[2] = view_img(niiObj, symmetric_cmap=False, vmax=68, threshold=jointThr)</span>
-<span class="s2">    #htmlObjs[2].width = 900</span>
-<span class="s2">    #htmlObjs[2].height = 270*1.5</span>
-<span class="s2">    #display(htmlObjs[2])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">def viewComulative(aggKey, connectivityThr=0.2, jointThr=30):</span>
+<span class="sd">    data = SUBJECT_MAPS[aggKey][&#39;None&#39;]</span>
+<span class="sd">    thrmap = (data&gt;=connectivityThr).sum(1).flatten()</span>
+<span class="sd">    </span>
+<span class="sd">    imgdata = np.zeros(np.prod(VOL_SIZE))</span>
+<span class="sd">    imgdata[GM_INDICES] = thrmap</span>
+<span class="sd">    imgdata = imgdata.reshape(VOL_SIZE)</span>
+<span class="sd">    niiObj = nib.Nifti1Image(imgdata, NII_AFFINE, NII_HEADER)  </span>
+<span class="sd">    #htmlObjs[2] = view_img(niiObj, symmetric_cmap=False, vmax=68, threshold=jointThr)</span>
+<span class="sd">    #htmlObjs[2].width = 900</span>
+<span class="sd">    #htmlObjs[2].height = 270*1.5</span>
+<span class="sd">    #display(htmlObjs[2])</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kc">None</span>
 </pre></div>
 
     </div>
