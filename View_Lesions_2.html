@@ -13140,6 +13140,28 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Anaconda3\lib\site-packages\sklearn\externals\joblib\__init__.py:15: FutureWarning: sklearn.externals.joblib is deprecated in 0.21 and will be removed in 0.23. Please import this functionality directly from joblib, which can be installed with: pip install joblib. If this warning is raised when loading pickled models, you may need to re-serialize those models with scikit-learn 0.21+.
+  warnings.warn(msg, category=FutureWarning)
+C:\Anaconda3\lib\site-packages\sklearn\utils\deprecation.py:144: FutureWarning: The sklearn.utils.testing module is  deprecated in version 0.22 and will be removed in version 0.24. The corresponding classes / functions should instead be imported from sklearn.utils. Anything that cannot be imported from sklearn.utils is now part of the private API.
+  warnings.warn(message, FutureWarning)
+C:\Anaconda3\lib\site-packages\sklearn\utils\deprecation.py:144: FutureWarning: The sklearn.datasets.base module is  deprecated in version 0.22 and will be removed in version 0.24. The corresponding classes / functions should instead be imported from sklearn.datasets. Anything that cannot be imported from sklearn.datasets is now part of the private API.
+  warnings.warn(message, FutureWarning)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
   </div>
 
   
@@ -13151,11 +13173,11 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">LESION_MAPS_FILE</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Lab\Lesion Project\Maps\Spatial\FinalMaps.pic&#39;</span>
-<span class="n">LESION_DATA</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">LESION_MAPS_FILE</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="c1">#LESION_DATA = pickle.load(open(LESION_MAPS_FILE, &#39;rb&#39;))</span>
 <span class="c1">#VOL_SIZE = LESION_DATA[&#39;volSize&#39;]</span>
 <span class="n">VOL_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">61</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">61</span><span class="p">)</span>
-<span class="n">GM_INDICES</span> <span class="o">=</span> <span class="n">LESION_DATA</span><span class="p">[</span><span class="s1">&#39;gmIndices&#39;</span><span class="p">]</span>
-<span class="n">SUBJECT_MAPS</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">LESION_DATA</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">]}</span>
+<span class="c1">#GM_INDICES = LESION_DATA[&#39;gmIndices&#39;]</span>
+<span class="c1">#SUBJECT_MAPS = {key:LESION_DATA[key] for key in [&#39;Mean&#39;, &#39;Max&#39;]}</span>
 
 <span class="n">SOME_NMI_FILE</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;BN_Atlas_246_3mm.nii.gz&#39;</span>
 <span class="n">obj</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">SOME_NMI_FILE</span><span class="p">)</span>
@@ -13220,7 +13242,7 @@ div#notebook {
     <span class="c1">#htmlObjs[0].width = 900</span>
     <span class="c1">#htmlObjs[0].height = 270*1.5</span>
     <span class="c1">#htmlObjs[1] = view_img(niiMaskObj, threshold=0.9, vmax=1, resampling_interpolation=&#39;nearest&#39;)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
     <span class="c1">#display(htmlObjs[0])</span>
     <span class="c1">#display(htmlObjs[1])</span>
 </pre></div>
