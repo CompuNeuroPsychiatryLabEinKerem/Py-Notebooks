@@ -13152,17 +13152,18 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">LESION_MAPS_FILE</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Lab\Lesion Project\Maps\Spatial\FinalMaps.pic&#39;</span>
 <span class="n">LESION_DATA</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">LESION_MAPS_FILE</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
-<span class="n">VOL_SIZE</span> <span class="o">=</span> <span class="n">LESION_DATA</span><span class="p">[</span><span class="s1">&#39;volSize&#39;</span><span class="p">]</span>
+<span class="c1">#VOL_SIZE = LESION_DATA[&#39;volSize&#39;]</span>
+<span class="n">VOL_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">61</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">61</span><span class="p">)</span>
 <span class="n">GM_INDICES</span> <span class="o">=</span> <span class="n">LESION_DATA</span><span class="p">[</span><span class="s1">&#39;gmIndices&#39;</span><span class="p">]</span>
 <span class="n">SUBJECT_MAPS</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span><span class="n">LESION_DATA</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">]}</span>
 
-<span class="n">SOME_NMI_FILE</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Lab\Atlases\Brainnetome\BN_Atlas_246_3mm.nii.gz&#39;</span>
+<span class="n">SOME_NMI_FILE</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;BN_Atlas_246_3mm.nii.gz&#39;</span>
 <span class="n">obj</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">SOME_NMI_FILE</span><span class="p">)</span>
 <span class="n">NII_HEADER</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">header</span>
 <span class="n">NII_HEADER</span><span class="o">.</span><span class="n">set_data_dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">NII_AFFINE</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">affine</span>
 
-<span class="n">LESION_MASKS</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\Lab\Lesion Project\Maps\Spatial\LesionMasks.pic&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+<span class="n">LESION_MASKS</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;LesionMasks.pic&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
 <span class="n">SUBJECT_KEYS</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;{i+1:02}&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">68</span><span class="p">)]</span>
 </pre></div>
 
@@ -13182,11 +13183,12 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">prepareNiiObject</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">,</span> <span class="n">weighingKey</span><span class="p">):</span>
     <span class="n">iSbj</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-    <span class="n">sbjVxlValues</span> <span class="o">=</span> <span class="n">SUBJECT_MAPS</span><span class="p">[</span><span class="n">aggKey</span><span class="p">][</span><span class="n">weighingKey</span><span class="p">][:,</span><span class="n">iSbj</span><span class="p">]</span>
-    <span class="n">imgdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">VOL_SIZE</span><span class="p">))</span>
-    <span class="n">imgdata</span><span class="p">[</span><span class="n">GM_INDICES</span><span class="p">]</span> <span class="o">=</span> <span class="n">sbjVxlValues</span>
-    <span class="n">imgdata</span> <span class="o">=</span> <span class="n">imgdata</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">VOL_SIZE</span><span class="p">)</span>
-    <span class="n">niiMapObj</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">imgdata</span><span class="p">,</span> <span class="n">NII_AFFINE</span><span class="p">,</span> <span class="n">NII_HEADER</span><span class="p">)</span>
+    <span class="c1">#sbjVxlValues = SUBJECT_MAPS[aggKey][weighingKey][:,iSbj]</span>
+    <span class="c1">#imgdata = np.zeros(np.prod(VOL_SIZE))</span>
+    <span class="c1">#imgdata[GM_INDICES] = sbjVxlValues</span>
+    <span class="c1">#imgdata = imgdata.reshape(VOL_SIZE)</span>
+    <span class="c1">#niiMapObj = nib.Nifti1Image(imgdata, NII_AFFINE, NII_HEADER)</span>
+    <span class="n">niiMapObj</span> <span class="o">=</span> <span class="kc">None</span>
     
     <span class="n">sbjMaskInds</span> <span class="o">=</span> <span class="n">LESION_MASKS</span><span class="p">[</span><span class="n">iSbj</span><span class="p">]</span>
     <span class="n">imgdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">VOL_SIZE</span><span class="p">))</span>
@@ -13212,19 +13214,14 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">htmlObjs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">def viewLesions(sbjKey, aggKey, threshold=0.2):</span>
-<span class="sd">    niiMapObj, niiMaskObj = prepareNiiObject(sbjKey, aggKey, &#39;None&#39;)</span>
-<span class="sd">    htmlObjs[0] = view_img(niiMapObj, threshold=threshold, vmax=1)</span>
-<span class="sd">    htmlObjs[0].width = 900</span>
-<span class="sd">    htmlObjs[0].height = 270*1.5</span>
-<span class="sd">    htmlObjs[1] = view_img(niiMaskObj, threshold=0.9, vmax=1, resampling_interpolation=&#39;nearest&#39;)</span>
-<span class="sd">    htmlObjs[0].width = 900</span>
-<span class="sd">    htmlObjs[0].height = 270*1.5</span>
-<span class="sd">    display(htmlObjs[0])</span>
-<span class="sd">    display(htmlObjs[1])</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kc">None</span>
+<span class="k">def</span> <span class="nf">viewLesions</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">niiMapObj</span><span class="p">,</span> <span class="n">niiMaskObj</span> <span class="o">=</span> <span class="n">prepareNiiObject</span><span class="p">(</span><span class="n">sbjKey</span><span class="p">,</span> <span class="n">aggKey</span><span class="p">,</span> <span class="s1">&#39;None&#39;</span><span class="p">)</span>
+    <span class="c1">#htmlObjs[0] = view_img(niiMapObj, threshold=threshold, vmax=1)</span>
+    <span class="c1">#htmlObjs[0].width = 900</span>
+    <span class="c1">#htmlObjs[0].height = 270*1.5</span>
+    <span class="n">htmlObjs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">view_img</span><span class="p">(</span><span class="n">niiMaskObj</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">resampling_interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="c1">#display(htmlObjs[0])</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">htmlObjs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13270,10 +13267,31 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#_=interact(viewLesions, sbjKey=SUBJECT_KEYS, aggKey=[&#39;Mean&#39;, &#39;Max&#39;], threshold=(0,1,0.05))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">_</span><span class="o">=</span><span class="n">interact</span><span class="p">(</span><span class="n">viewLesions</span><span class="p">,</span> <span class="n">sbjKey</span><span class="o">=</span><span class="n">SUBJECT_KEYS</span><span class="p">,</span> <span class="n">aggKey</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">],</span> <span class="n">threshold</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.05</span><span class="p">))</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
 </div>
 </div>
 
