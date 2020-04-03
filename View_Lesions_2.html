@@ -13242,13 +13242,14 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">viewComulative</span><span class="p">(</span><span class="n">aggKey</span><span class="p">,</span> <span class="n">connectivityThr</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">jointThr</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">SUBJECT_MAPS</span><span class="p">[</span><span class="n">aggKey</span><span class="p">][</span><span class="s1">&#39;None&#39;</span><span class="p">]</span>
-    <span class="n">thrmap</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">&gt;=</span><span class="n">connectivityThr</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">LESION_MAPS_FILE</span><span class="p">)</span>
+    <span class="c1">#data = SUBJECT_MAPS[aggKey][&#39;None&#39;]</span>
+    <span class="c1">#thrmap = (data&gt;=connectivityThr).sum(1).flatten()</span>
     
-    <span class="n">imgdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">VOL_SIZE</span><span class="p">))</span>
-    <span class="n">imgdata</span><span class="p">[</span><span class="n">GM_INDICES</span><span class="p">]</span> <span class="o">=</span> <span class="n">thrmap</span>
-    <span class="n">imgdata</span> <span class="o">=</span> <span class="n">imgdata</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">VOL_SIZE</span><span class="p">)</span>
-    <span class="n">niiObj</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">imgdata</span><span class="p">,</span> <span class="n">NII_AFFINE</span><span class="p">,</span> <span class="n">NII_HEADER</span><span class="p">)</span>  
+    <span class="c1">#imgdata = np.zeros(np.prod(VOL_SIZE))</span>
+    <span class="c1">#imgdata[GM_INDICES] = thrmap</span>
+    <span class="c1">#imgdata = imgdata.reshape(VOL_SIZE)</span>
+    <span class="c1">#niiObj = nib.Nifti1Image(imgdata, NII_AFFINE, NII_HEADER)  </span>
     <span class="c1">#htmlObjs[2] = view_img(niiObj, symmetric_cmap=False, vmax=68, threshold=jointThr)</span>
     <span class="c1">#htmlObjs[2].width = 900</span>
     <span class="c1">#htmlObjs[2].height = 270*1.5</span>
